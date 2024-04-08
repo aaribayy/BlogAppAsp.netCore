@@ -1,0 +1,81 @@
+﻿
+@model BlogDto
+@{
+    ViewData["Title"] = "Edit Page";
+}
+<div class="row">
+
+    <div class="col-md-8 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Edit Blog</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Id</label>
+                <div class="col-sm-8">
+                    <input class="form-control-plaintext" readonly value="@ViewData["BlogId"]">
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label asp-for="Title" class="col-sm-4 col-form-label">Title</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="Title">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Created By</label> <div class="col-sm-8">
+                    <input class="form-control-plaintext" readonly value="@ViewData["Author"]">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Created At</label> <div class="col-sm-8">
+                    <input class="form-control-plaintext" readonly value="@ViewData["CreatedAt"]">
+                </div>
+            </div>
+            ﻿
+
+            <div class="row mb-3">
+                <div class="offset-sm-4 col-sm-8">
+                    <img src="/blogs/@ViewData["ImageFileName"]" width="150">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label asp-for="ImageFile" class="col-sm-4 col-form-label">Image</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="ImageFile">
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+            </div>
+            ﻿ <div class="row mb-3">
+                <label asp-for="Description" class="col-sm-4 col-form-label">Description</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" asp-for="Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label asp-for="Content" class="col-sm-4 col-form-label">Blog Content</label>
+                <div class="col-sm-8">
+                    <textarea  rows="20"class="form-control" asp-for="Content"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="col-sm-4 d-grid">
+                    <a class="btn btn-outline-primary" asp-controller="Blog" asp-action="Index" role="button">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

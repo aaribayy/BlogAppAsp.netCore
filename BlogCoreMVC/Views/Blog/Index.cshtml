@@ -1,0 +1,57 @@
+﻿@model List<AuthorTb>
+@{
+    ViewData["Title"] = "View Blogs Page";
+}
+<h2 class="text-center mb-3">List of Products</h2>
+<div class="row mb-5">
+    <div class="col">
+        <a class="btn btn-primary" asp-controller="Blog" asp-action="Create">New Blog</a>
+    </div>
+    <div class="col-4 justify-content-end">
+        <form class="form-inline" asp-controller="Blog" asp-action="Index">
+            <div class="input-group">
+                <input class="form-control" type="text" name="search" placeholder="Search Key">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            @* <th>Description</th> *@
+            <th>Published Date</th>
+            <th>Author Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        ﻿
+        
+
+        @foreach (var author in Model)
+        {
+            foreach (var blog in author.Blogs)
+            {
+                <tr>
+                    <td><img src="/blogs/@blog.ImageFileName" width="100" /></td>
+                    <td>@blog.Title</td>
+                    @* <td>@blog.Description</td> *@
+                    <td>@blog.PublishedDate.ToString("MM/dd/yyyy")</td>
+                    <td>@author.Name</td>
+                    <td style="white-space: nowrap">
+                        <a class="btn btn-primary btn-sm" asp-controller="Blog" asp-action="Edit" asp-route-id="@blog.Id">Edit</a>
+                        <a class="btn btn-danger btn-sm" asp-controller="Blog" asp-action="Delete" asp-route-id="@blog.Id" onclick="return confirm('Are you sure?')">Delete</a>
+                        <a class="btn btn-success btn-sm" asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">View</a>
+
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
